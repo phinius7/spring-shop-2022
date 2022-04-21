@@ -1,11 +1,14 @@
 package ru.senchenko.dao;
 
+import org.springframework.web.multipart.MultipartFile;
 import ru.senchenko.entities.Category;
 import ru.senchenko.entities.Product;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ProductDao {
 
@@ -17,6 +20,10 @@ public class ProductDao {
     private String description;
     private Category category;
 
+    private List<PictureDao> pictures;
+
+    private MultipartFile[] newPicture;
+
     public ProductDao() {}
 
     public ProductDao(Product product) {
@@ -27,6 +34,9 @@ public class ProductDao {
         this.price = product.getPrice();
         this.description = product.getDescription();
         this.category = product.getCategory();
+        this.pictures = product.getPictures().stream()
+                .map(PictureDao::new)
+                .collect(Collectors.toList());
     }
 
     public Integer getId() {
@@ -83,6 +93,22 @@ public class ProductDao {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<PictureDao> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<PictureDao> pictures) {
+        this.pictures = pictures;
+    }
+
+    public MultipartFile[] getNewPicture() {
+        return newPicture;
+    }
+
+    public void setNewPicture(MultipartFile[] newPicture) {
+        this.newPicture = newPicture;
     }
 
     @Override

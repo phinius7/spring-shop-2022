@@ -3,6 +3,7 @@ package ru.senchenko.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.senchenko.dao.UserDao;
 import ru.senchenko.entities.User;
 import ru.senchenko.repositories.UserRepo;
@@ -25,6 +26,7 @@ public class UserService implements CrudInterface<UserDao> {
 
 
     @Override
+    @Transactional
     public void create(UserDao dao) {
         User user = new User();
         user.setId(dao.getId());

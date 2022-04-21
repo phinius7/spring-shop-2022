@@ -2,12 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: head"><title>Edit User</title></head>
 <body class="bg-light">
+
+<th:block th:if="${error}">
+    <div th:replace="fragments/header :: alert"></div>
+</th:block>
+
 <nav th:replace="fragments/header :: header"></nav>
 <div class="d-flex">
     <div th:replace="fragments/sidebar :: sidebar"></div>
     <div class="content p-4">
-        <h2 class="mb-4">Edit Role Form</h2>
-        <form th:action="@{/users/edit}" th:object="${user}" method="POST">
+        <h2 class="mb-4" th:if="${edit}">Edit User</h2>
+        <h2 class="mb-4" th:if="${create}">Create User</h2>
+        <form th:action="@{/user}" th:object="${user}" method="POST">
             <div class="card mb-4">
                 <div class="card-body">
                     <label>

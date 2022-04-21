@@ -2,6 +2,7 @@ package ru.senchenko.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.senchenko.dao.RoleDao;
 import ru.senchenko.entities.Role;
 import ru.senchenko.repositories.RoleRepo;
@@ -22,6 +23,7 @@ public class RoleService implements CrudInterface<RoleDao> {
 
 
     @Override
+    @Transactional
     public void create(RoleDao dao) {
         Role role = new Role();
         role.setId(dao.getId());

@@ -11,7 +11,7 @@
     <div th:replace="fragments/sidebar :: sidebar"></div>
 
     <div class="content p-4">
-        <h2 class="mb-4">View product list</h2>
+        <h2 class="mb-4">Product List</h2>
         <div class="card mb-4">
             <div class="card-body">
                 <table id="products" class="table table-hover">
@@ -33,10 +33,10 @@
                         <td th:text="${p.category}"></td>
                         <td th:text="${p.price}"></td>
                         <td>
-                            <a th:href="@{'/products/edit/' + ${p.id}}" class="btn btn-icon btn-pill btn-primary"
+                            <a th:href="@{/product/{id}/edit(id=${p.id})}" class="btn btn-icon btn-pill btn-primary"
                                data-toggle="tooltip" title="" data-original-title="Edit"><i
                                     class="fa fa-fw fa-edit"></i></a>
-                            <a th:href="@{'/products/delete/' + ${p.id}}" class="btn btn-icon btn-pill btn-danger"
+                            <a th:href="@{/product/{id}/delete(id=${p.id})}" class="btn btn-icon btn-pill btn-danger"
                                data-toggle="tooltip" title="" data-original-title="Delete"><i
                                     class="fa fa-fw fa-trash"></i></a>
                         </td>
@@ -45,7 +45,7 @@
                 </table>
             </div>
             <div class="card-body">
-                <a class="btn btn-primary btn-lg btn-block btn-pill" th:href="@{'/products/add/'}">Create</a>
+                <a class="btn btn-primary btn-lg btn-block btn-pill" th:href="@{/product/add}">Create</a>
             </div>
         </div>
     </div>

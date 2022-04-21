@@ -2,21 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: head"><title>New Role</title></head>
 <body class="bg-light">
+<th:block th:if="${error}">
+    <div th:replace="fragments/header :: alert"></div>
+</th:block>
 <nav th:replace="fragments/header :: header"></nav>
 <div class="d-flex">
     <div th:replace="fragments/sidebar :: sidebar"></div>
     <div class="content p-4">
-        <h2 class="mb-4">Add Role Form</h2>
-        <form method="post" th:action="@{/roles/add}" th:object="${role}">
+        <h2 class="mb-4" th:if="${edit}">Edit Role</h2>
+        <h2 class="mb-4" th:if="${create}">Create Role</h2>
+        <form method="post" th:action="@{/role}" th:object="${role}">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="form-group">
+                        <input th:field="*{id}" type="hidden" class="form-control">
                         <label for="title">Role name</label>
                         <input th:field="*{title}" type="text" class="form-control" id="title"
                                placeholder="Enter Role name" required>
                     </div>
                     <button class="btn btn-success btn-pill" type="submit">Add</button>
-                    <a class="btn btn-danger btn-pill" th:href="@{/roles/add}">Clear</a>
+                    <a class="btn btn-danger btn-pill" th:href="@{/role/add}">Clear</a>
                     <a class="btn btn-primary btn-pill" th:href="@{/roles}">Back</a>
                 </div>
             </div>

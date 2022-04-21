@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"><title>Edit Category</title></head>
+
+<body class="bg-light">
+
+<th:block th:if="${error}">
+    <div th:replace="fragments/header :: alert"></div>
+</th:block>
+
+<nav th:replace="fragments/header :: header"></nav>
+
+<div class="d-flex">
+
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <div class="content p-4">
+        <h2 class="mb-4" th:if="${edit}">Edit Category</h2>
+        <h2 class="mb-4" th:if="${create}">Create Category</h2>
+        <form th:action="@{/category}" th:object="${category}" method="POST" enctype="multipart/form-data">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <input th:field="*{id}" type="hidden" class="form-control">
+                    <div class="form-group">
+                        <label for="title">Category name</label>
+                        <input th:field="*{title}" type="text" class="form-control" id="title"
+                               placeholder="Enter Category name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="code">The Code</label>
+                        <input th:field="*{article}" type="text" class="form-control" id="code"
+                               placeholder="Enter The Code" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-pill">Save</button>
+                    <a class="btn btn-primary btn-pill" th:href="@{/categories}">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script th:replace="fragments/footer :: scripts"></script>
+
+</body>
+</html>

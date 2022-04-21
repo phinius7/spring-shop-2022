@@ -6,7 +6,7 @@
 <div class="d-flex">
     <div th:replace="fragments/sidebar :: sidebar"></div>
     <div class="content p-4">
-        <h2 class="mb-4">View user list</h2>
+        <h2 class="mb-4">User List</h2>
         <div class="card mb-4">
             <div class="card-body">
                 <table id="users" class="table table-hover">
@@ -32,10 +32,10 @@
                         <td th:text="${u.firstName} + ' ' + ${u.lastName}"></td>
                         <td th:text="${u.email}"></td>
                         <td>
-                            <a th:href="@{'/users/edit/' + ${u.id}}" class="btn btn-icon btn-pill btn-primary"
+                            <a th:href="@{/user/{id}/edit(id=${u.id})}" class="btn btn-icon btn-pill btn-primary"
                                data-toggle="tooltip" title="" data-original-title="Edit"><i
                                     class="fa fa-fw fa-edit"></i></a>
-                            <a th:href="@{'/users/delete/' + ${u.id}}" class="btn btn-icon btn-pill btn-danger"
+                            <a th:href="@{/user/{id}/delete(id=${u.id})}" class="btn btn-icon btn-pill btn-danger"
                                data-toggle="tooltip" title="" data-original-title="Delete"><i
                                     class="fa fa-fw fa-trash"></i></a>
                         </td>
@@ -44,7 +44,7 @@
                 </table>
             </div>
             <div class="card-body">
-                <a class="btn btn-primary btn-lg btn-block btn-pill" th:href="@{'/users/add/'}">Create</a>
+                <a class="btn btn-primary btn-lg btn-block btn-pill" th:href="@{/user/add}">Create</a>
             </div>
         </div>
     </div>

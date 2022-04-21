@@ -6,7 +6,7 @@
 <div class="d-flex">
     <div th:replace="fragments/sidebar :: sidebar"></div>
     <div class="content p-4">
-        <h2 class="mb-4">View role list</h2>
+        <h2 class="mb-4">Role List</h2>
         <div class="card mb-4">
             <div class="card-body">
                 <table id="roles" class="table table-hover">
@@ -24,10 +24,10 @@
                         <td th:text="${r.createDate}"></td>
                         <td th:text="${r.modifyDate}"></td>
                         <td>
-                            <a th:href="@{'/roles/edit/' + ${r.id}}" class="btn btn-icon btn-pill btn-primary"
+                            <a th:href="@{/role/{id}/edit(id=${r.id})}" class="btn btn-icon btn-pill btn-primary"
                                data-toggle="tooltip" title="" data-original-title="Edit"><i
                                     class="fa fa-fw fa-edit"></i></a>
-                            <a th:href="@{'/roles/delete/' + ${r.id}}" class="btn btn-icon btn-pill btn-danger"
+                            <a th:href="@{/role/{id}/delete(id=${r.id})}" class="btn btn-icon btn-pill btn-danger"
                                data-toggle="tooltip" title="" data-original-title="Delete"><i
                                     class="fa fa-fw fa-trash"></i></a>
                         </td>
@@ -36,7 +36,7 @@
                 </table>
             </div>
             <div class="card-body">
-                <a class="btn btn-primary btn-lg btn-block btn-pill" th:href="@{'/roles/add/'}">Create</a>
+                <a class="btn btn-primary btn-lg btn-block btn-pill" th:href="@{/role/add}">Create</a>
             </div>
         </div>
     </div>
