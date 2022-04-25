@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.senchenko.service.PictureService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
@@ -40,5 +41,13 @@ public class PictureController {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
         }
+    }
+
+    @GetMapping("/{pictureId}/delete")
+    public void deleteById(@PathVariable("pictureId") Integer id,
+                           HttpServletRequest request,
+                           HttpServletResponse response) throws IOException {
+        pictureService.deleteById(id);
+        response.sendRedirect(request.getHeader("referer"));
     }
 }

@@ -15,6 +15,7 @@ import ru.senchenko.service.PictureService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -50,12 +51,14 @@ public class ProductService implements CrudInterface<ProductDao> {
                 if (product.getPictures() == null) {
                     product.setPictures(new ArrayList<>());
                 }
-                product.getPictures().add(new Picture(
-                        newPicture.getOriginalFilename(),
-                        newPicture.getContentType(),
-                        pictureService.createPictureData(newPicture.getBytes()),
-                        product
-                        ));
+                if(!Objects.equals(newPicture.getContentType(), "application/octet-stream")) {
+                    product.getPictures().add(new Picture(
+                            newPicture.getOriginalFilename(),
+                            newPicture.getContentType(),
+                            pictureService.createPictureData(newPicture.getBytes()),
+                            product
+                    ));
+                }
             }
         }
         productRepo.save(product);

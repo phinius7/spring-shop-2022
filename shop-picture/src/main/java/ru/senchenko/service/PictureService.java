@@ -31,4 +31,8 @@ public class PictureService {
     public PictureData createPictureData(byte[] picture) {
         return new PictureData(picture);
     }
+
+    public void deleteById(Integer id) {
+        pictureRepo.deleteById(id);
+    }
 }
